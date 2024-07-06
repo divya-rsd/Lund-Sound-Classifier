@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_admin1.css') }}"> 
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="user.html">user</a></li>
+            <li><a href="about.html">about</a></li>
+            <li><a href="admin.html">admin</a></li>
+            <li style="float:right;"><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Welcome Admin</h1>
+        <form id="adminLoginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"><br><br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <script>
+        var expectedUsername = "admin";  // Set the expected username
+        var expectedPassword = "password123";  // Set the expected password
+
+        document.getElementById('adminLoginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Check if the username and password match the expected values
+            if (username === expectedUsername && password === expectedPassword) {
+                alert('Login successful!');
+                window.location.href = 'admin1.html'; // Redirect to admin1.html
+            } else {
+                alert('Invalid username or password. Please try again.');
+            }
+        });
+        function logout() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+
+</html>

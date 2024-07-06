@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_admin1.css') }}"> 
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="userhome.html">User Home</a></li>
+            <li><a href="livetemperature.html">Live Temperature</a></li>
+            <li style="float:right;"><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>User Home</h1>
+        <div id="userDetails">
+            <h2>User Information</h2>
+            <p><u>Name</u>: {{ name }}</p>
+            <p><u>Age</u>: {{ age }}</p>
+            <p>Audio / Lung Sound Recording: </p>
+        </div>
+        <div class="record">
+            <button class="start-btn">Start Recording</button>
+            <p class="response-box"></p>
+        </div>
+        <div class="all-recordings">
+            <h3>All Recordings</h3>
+            <div class="juke-box">
+                
+                {% for item in data_array %}
+                    <audio controls>
+                        <source src="{{ url_for('static', filename=item) }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+
+                    <div class="audio-process {{ item }}" id="{{ item }}"> &lt; Audio Processing &gt; </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <div class="audio-box">
+            <div class="audio-div noise-reduce">
+                <img src="" class="before-img" height="300px"/>
+                <div class="act-btn">Reduce Noise</div>
+                <img src="" class="after-img" height="300px"/>
+            </div>
+
+            <div class="audio-div heart-beat">
+                <div class="act-btn">Removing the heart beats</div>
+                <img src="" class="after-img" height="300px" />
+            </div>
+
+            <div class="audio-div mel-spect">
+
+                <div class="act-btn">Mel Spectrogram</div>
+                <img src="" class="mel-spectrogram-img"/>
+            </div>
+
+            <div class="audio-div classify">
+                <div class="act-btn">Classify</div>
+                <div class="results">...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+
+    <script>
+        var name = "{{ name }}"
+
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Temperature</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_admin1.css') }}"> 
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="userhome.html">User Home</a></li>
+            <li><a href="livetemperature.html">Live Temperature</a></li>
+            <li style="float:right;"><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Live Temperature</h1>
+        <iframe
+            class="data-frame"
+            src="https://api.thingspeak.com/channels/2165400/charts/4?api_key=SECDLIR7ELDMTJE4"
+        ></iframe>
+    </div>
+
+    <script>
+        function logout() {
+            window.location.href = 'index.html'; // Redirect to the home page on logout
+        }
+    </script>
+</body>
+</html>

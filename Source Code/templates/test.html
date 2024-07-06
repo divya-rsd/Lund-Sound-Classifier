@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_admin1.css') }}"> 
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="user.html">user</a></li>
+            <li><a href="about.html">about</a></li>
+            <li><a href="admin.html">admin</a></li>
+            <li style="float:right;"><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Welcome User</h1>
+        <div class="choice">
+            <button onclick="showLoginForm()">Login</button>
+            <button onclick="showSignupForm()">Sign Up</button>
+        </div>
+
+        <!-- Signup Form -->
+        <div class="forms" id="signupForm" style="display:none;">
+            <h2>Sign Up</h2>
+            <form id="signupForm" action="signup.php" method="POST" onsubmit="window.location.href = 'userhome.html';">
+                <label for="newUsername">Username:</label>
+                <input type="text" id="newUsername" name="newUsername" required><br>
+
+                <label for "newPassword">Password:</label>
+                <input type="password" id="newPassword" name="newPassword" required><br><br>
+
+                <!-- Add more fields for details like name, age, and voice recording -->
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required><br>
+
+                <!-- Add an input field for voice recording -->
+                <input type="file" id="voiceRecording" name="voiceRecording" accept=".wav, .mp3, .ogg" required><br><br>
+
+                <input type="submit" value="Sign Up">
+            </form>
+        </div>
+
+        <!-- Login Form -->
+        <div class="forms" id="loginForm" style="display:none;">
+            <h2>Login</h2>
+            <form id="loginForm" action="login.php" method="POST" onsubmit="window.location.href = 'userhome.html';">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br><br>
+
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function Redirect() {
+            window.location.href = 'userhome.html';
+        }
+        function logout() {
+            window.location.href = 'index.html';
+        }
+
+        function showLoginForm() {
+            document.getElementById("loginForm").style.display = "block";
+            document.getElementById("signupForm").style.display = "none";
+        }
+
+        function showSignupForm() {
+            document.getElementById("signupForm").style.display = "block";
+            document.getElementById("loginForm").style.display = "none";
+            window.location.href = 'filldetails.html';
+        }
+    </script>
+</body>
+</html>
